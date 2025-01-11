@@ -163,12 +163,15 @@ export const login = async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
+
+
    // If everything is valid, generate a token
     const token = jwt.sign({ user_id: user.id, email }, TOKEN_KEY, {
       expiresIn: "1h",
     });
       let dataUser={
           id:user.id,
+          idperson:user.person_id,
           user:user.user,
           email:user.email,
           typeusers_id:user.typeusers_id
