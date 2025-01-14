@@ -8,9 +8,8 @@ import { PersonsModel } from "../models/PersonsModel.js";
 export const getUsers = async (req, res) => {
   try {
     const users = await UserModel.findAll({
-      attributes: ['id', 'user', 'email', 'typeusers_id']
-    },{where: {state:true}});
-  
+      attributes: ['id', 'user', 'email', 'typeusers_id', 'state'],
+      where: {state:true}});
     res.status(200).json({users});
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -140,11 +139,12 @@ export const deleteUsers = async (req, res) => {
   if (user) {
     user.set({ ...user, state: false });
     await user.save();
-    res.status(200).json({ message: "delete" });
+    res.status(200).json({ message: "user delete" });
   } else {
-    res.status(404).json({ message: "type not found" });
+    res.status(404).json({ message: "user not found" });
   }
 };
+
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
