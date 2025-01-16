@@ -7,6 +7,8 @@ import  { RouterUsuer } from './router/UserRouter.js';
 import  personrouter  from './router/PersonRouter.js';
 import { sequelize } from "./db/conexion.js";
 
+
+
 const _PORT = PORT || 3000;
 const app = express();
 app.use(express.json());
